@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Simple Interest Calculator</title>
+        
+    <style>
+       body {background-color:black;
+    font-family: arial;
+    color: white;  }
+h1{color:grey;
+font-family:verdana}
+
+.maindiv{
+    background-color: white;
+    color: black;
+    width: 300px;
+    padding: 20px;
+    border-radius: 25px;
+    text-align: center;
+}
+        </style>
+
+    </head>
+    <body>
+        <div class= "maindiv">
+        <h1>Simple Interest Calculator</h1>
+
+        Amount <input type="number"  id="principal">  <br/>
+        Rate <input type="range" min="1" max="20" value= "10.25" step= "0.25"  id="rate" onchange="updaterate()">
+        <span id="rate_val">10.25
+        </span>%  <br/>
+        No. of Years <input type="number"  id="years" list="all_years">  <br/>
+        <datalist id="all_years">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <!-- Fill in the rest of the values -->
+        </datalist>
+        Interest : <span id="result"></span><br>
+
+        <button onclick="compute()">Compute Interest</button>
+        <span id="result">
+        </span>
+        </div>
+
+    <script>
+        
+function compute()
+{
+    var principal = document.getElementById("principal").value;
+    var rate = document.getElementById("rate").value;
+    var years =document.getElementById("years").value;
+    var interest= principal*years*rate/100;
+    var amount = parseInt(principal) + parseFloat(interest)
+    var result = document.getElementById("result");
+    var year = new Date().getFullYear() + parseInt(years);
+    
+    if(principal <= 0) {
+        alert("Please enter a positive number for the amount!");
+        document.getElementById("principal").focus();
+    }
+    
+
+    else if(isNaN(year)) {
+        alert("Invalid entry. Please enter a valid number of years!");
+        document.getElementById("years").focus();
+} 
+else {
+    result.innerHTML = "If you deposit $" + "<mark>" + principal + "</mark>" + ",\<br\> at an interest rate of " + "<mark>" + rate + "%" + "</mark>" + "\<br\> You will receive an amount of $" + "<mark>" + amount + "</mark>" + ",\<br\> in the year " + "<mark>" + year + "</mark>" + "\<br\>";
+}
+    
+    
+    
+
+    
+
+}
+
+
+
+function updaterate()
+{
+ var rateval = document.getElementById("rate").value;
+ document.getElementById("rate_val").innerText =rateval;   
+}
+
+</script>
+
+        
+
+
+        <footer>
+            &#169; This Calculator belongs to Bright
+        </footer>
+    </body>
+</html>
